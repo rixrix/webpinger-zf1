@@ -1,0 +1,47 @@
+<div ng-controller="MainController">
+	<div class="row">
+		<form class="bs-example bs-example-form">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="input-group">
+						<input type="text" class="form-control" ng-model="newHost" placeholder="Enter hostname or IP address...">
+				<span class="input-group-btn">
+				  <button class="btn btn-default" type="button" ng-click="hostsContainer.addItem(newHost); newHost=''">Add</button>
+				</span>
+					</div><!-- /input-group -->
+				</div><!-- /.col-lg-6 -->
+			</div><!-- /.row -->
+		</form>
+	</div>
+	<br />
+	<div class="row">
+		<div class="panel panel-default">
+			<!-- Default panel contents -->
+			<!-- Table -->
+			<table class="table">
+				<thead>
+					<tr>
+						<th style="width: 120px;"><a href="#" class="btn btn-xs btn-default" role="button" ng-click="removeHost()">Delete Selected</a></th>
+						<th>Hostname / IP Address</th>
+						<th>Latency (ms)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="host in hostsContainer.list()">
+						<td align="center"><input type="checkbox" ng-click="updateSelection(host)"></td>
+						<td>{{host}}</td>
+						<td><span id="{{host}}"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<h4><small>Note: The application will automatically poll the server every 10 seconds.</small></h4>
+	</div>
+
+	<div class="row">
+		<p>
+			<a href="#" class="btn btn-success" role="button" ng-click="startPing()">Start Ping</a>
+			<a href="#" class="btn btn-danger" role="button" ng-click="stopPing()">Stop Ping</a>
+		</p>
+	</div>
+</div> <!-- controller holder -->
